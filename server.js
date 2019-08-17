@@ -1,31 +1,34 @@
-var express = require('express'); // Подключаем express
-var app = express();
-var server = require('http').Server(app); // Подключаем http через app
-var io = require('socket.io')(server); // Подключаем socket.io и указываем на сервер
-var fs = require('fs');
-var watch = require('node-watch');
+const express = require('express');
+// Подключаем express
+const app = express();
+const server = require('http').Server(app); // Подключаем http через app
+const io = require('socket.io')(server); // Подключаем socket.io и указываем на сервер
+// eslint-disable-next-line no-unused-vars
+const fs = require('fs');
+const watch = require('node-watch');
 
 const port = 9080;
 server.listen(port);
-app.use(express.static(__dirname + '/src'));
+app.use(express.static(`${__dirname}/src`));
 
 const isDevMode = process.env.isDevModeAvaiable || false;
 const devMode = process.env.myDevMode || false;
 const address = process.env.backendMachine || false;
 
-let count = 0;//убрать для работы
-if(process.env.isHotReload) {
-  watch('./', { recursive: true }, function(evt, name) {  
-    io.emit('change', {changed, isDevMode, devMode});  
+let count = 0;// убрать для работы
+let changed = [];// убрать тоже
+if (process.env.isHotReload) {
+  watch('./', { recursive: true }, (evt, name) => {
+    io.emit('change', { changed, isDevMode, devMode });
     count += 1;
-    changed = [{name, evt}, ...changed];  
+    changed = [{ name, evt }, ...changed];
   });
-};
-const str = `Connected to machine: ${address}, dev mode is ${isDevMode ? 'enabled' : 'disabled'} and it is "${devMode ? devMode : 'not set'}"`
+}
+const str = `Connected to machine: ${address}, dev mode is ${isDevMode ? 'enabled' : 'disabled'} and it is "${devMode || 'not set'}"`;
+// eslint-disable-next-line no-console
 console.log(str);
-let changed = [];
+
 app.get('/data', (req, res) => {
   res.data = count;
-  res.send({count, changed});
+  res.send({ count, changed });
 });
-    

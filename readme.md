@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/d4fd2dc726f19e2d4bc2/maintainability)](https://codeclimate.com/github/euhoo/watch_bg/maintainability)
+[![Build Status](https://travis-ci.org/euhoo/watch_bg.svg?branch=master)](https://travis-ci.org/euhoo/watch_bg)  
 Сделано с использованием  
 https://habr.com/ru/post/307744/  
 Так же помогла дока socket.io  
