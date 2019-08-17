@@ -34,6 +34,5 @@ angular.module('App', [])
         $scope.count = response.data.count;
         $scope.changed = Array.from(new Set(response.data.changed)); // unique
         //const process = response.data.count;
-        console.log($scope.changed); 
     });
 }])

@@ -1,4 +1,4 @@
 var socket = io();
 socket.on('change', () => {
-    location.reload(); 
-});
+    location.reload();  
+}); 
