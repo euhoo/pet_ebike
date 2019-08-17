@@ -1,2 +1,2 @@
 [credential]
-        helper = cache --3600
+        helper = cache store
