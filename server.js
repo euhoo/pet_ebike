@@ -9,10 +9,10 @@ const port = 9080;
 server.listen(port);
 app.use(express.static(__dirname + '/src'));
 
-
-const isDevMode = process.env.isDevModeAvaiables || false;
+const isDevMode = process.env.isDevModeAvaiable || false;
 const devMode = process.env.myDevMode || false;
 const address = process.env.backendMachine || false;
+
 let count = 0;//убрать для работы
 if(process.env.isHotReload) {
   watch('./', { recursive: true }, function(evt, name) {  
@@ -21,8 +21,8 @@ if(process.env.isHotReload) {
     changed = [{name, evt}, ...changed];  
   });
 };
-
-
+const str = `Connected to machine: ${address}, dev mode is ${isDevMode ? 'enabled' : 'disabled'} and it is "${devMode ? devMode : 'not set'}"`
+console.log(str);
 let changed = [];
 app.get('/data', (req, res) => {
   res.data = count;
