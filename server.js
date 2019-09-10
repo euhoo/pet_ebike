@@ -15,8 +15,6 @@ const isDevMode = process.env.isDevModeAvaiable || false;
 const devMode = process.env.myDevMode || false;
 const address = process.env.backendMachine || false;
 
-let count = 0;// убрать для работы
-let changed = [];// убрать тоже
 if (process.env.isHotReload) {
   watch('./', { recursive: true }, (evt, name) => {
     io.emit('change', { changed, isDevMode, devMode });
@@ -27,8 +25,3 @@ if (process.env.isHotReload) {
 const str = `Connected to machine: ${address}, dev mode is ${isDevMode ? 'enabled' : 'disabled'} and it is "${devMode || 'not set'}"`;
 // eslint-disable-next-line no-console
 console.log(str);
-
-app.get('/data', (req, res) => {
-  res.data = count;
-  res.send({ count, changed });
-});

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='App'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/main.css?123">
+    <script src="./src/socket.io.js"></script>
+    <script src="./src/angular.js"></script>
+    <script src="./src/app.js"></script>
+    <script src="./src/watch.js"></script>
+  
+</head>
+<body ng-controller="myAppCtrl">
+    <div>{{title}}</div>
+    <br>
+  
+  <div >Input для отслеживания перезагрузки. Если осуществляется reload, input теряет введенное содержимое</div>
+  <br>
+  <input type="text" placeholder="тест неперезагрузки">
+  <div class="red">
+      <div>Демо</div>
+  </div>
+</body>
+</html>

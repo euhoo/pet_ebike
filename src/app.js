@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-undef
 angular.module('App', [])
   .controller('myAppCtrl', ['$scope', '$timeout', '$http',
-    ($scope, $timeout, $http) => {
+    ($scope, $interval, $http) => {
       $scope.title = 'Страничка для тестирования простешего хот релоада без пересборки';
       $scope.count = 0;
       $scope.todo = [
@@ -27,11 +27,5 @@ angular.module('App', [])
       //         $scope.$digest();//
       //         //location.reload();//agfr
       //     })
-      $scope.changed = [];
-      $http({ method: 'GET', url: 'data' })
-        .then((response) => {
-          $scope.count = response.data.count;
-          $scope.changed = Array.from(new Set(response.data.changed)); // unique
-        // const process = response.data.count;
-        });
+     
     }]);
