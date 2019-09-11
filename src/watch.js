@@ -13,7 +13,7 @@ const makeCorrectName = (name) => name
 const findCss = (hrefToReplace) => {
   const head = document.getElementsByTagName('head')[0];
   const replacedString = findFullPathString(hrefToReplace);
-  const cssLink = [...head.getElementsByTagName('link')]
+  const cssLink = Array.from(head.getElementsByTagName('link'))// special for IE
     .filter((link) => {
       const href = link.getAttribute('href').split('?')[0];
       const hrefString = findFullPathString(href);
