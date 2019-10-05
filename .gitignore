@@ -1,2 +1,4 @@
 /node_modules
+/babeled
+/build
 package-lock.json

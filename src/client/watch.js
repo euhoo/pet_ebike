@@ -1,3 +1,4 @@
+// export default () => {
 const socket = io.connect();
 
 const findFullPathString = (path) => path
@@ -37,3 +38,4 @@ socket.on('change', ({ name }) => {
   const isCss = tryReloadCss(name);
   if (!isCss) location.reload();
 });
+// }
