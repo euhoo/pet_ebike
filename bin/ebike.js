@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 if (typeof process === 'undefined') {
   const socket = io.connect();
 

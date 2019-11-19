@@ -1,3 +1,5 @@
+import io from 'socket.io';
+
 export default () => {
   const socket = io.connect();
 
