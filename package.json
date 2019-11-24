@@ -1,12 +1,11 @@
 {
   "name": "watch",
-  "version": "1.0.3",
+  "version": "0.0.9",
   "description": "simple file watcher",
   "main": "index.js",
   "scripts": {
-    "117": "export backendMachine=117 isHotReload=true isDevModeAvaiable=true myDevMode=html && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node hot.server.js"
+    "start": "node index.js"
   },
   "author": "Eugene Kvach",
   "license": "ISC",
