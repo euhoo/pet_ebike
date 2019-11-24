@@ -1,0 +1,12 @@
+.red{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    width:100px;
+    height:100px;
+    margin-top:70px;
+    margin-left: 80px;
+    border-radius:5px;
+    box-shadow:10px 10px 22px 2px red;
+}

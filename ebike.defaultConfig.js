@@ -1,7 +1,7 @@
 module.exports = {
   exeptions: ['git', 'js_babeled', 'node_modules', 'build', 'hotreload', 'idea'], // исключения,которые вотчить не надо, файлы и папки
   isRemoteServer: false,
-  addressesObj: {
+  aliases: {
     1.102: 'http://192.168.1.102:4444',
   },
   defaultOptions: {
