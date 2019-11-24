@@ -1,15 +1,17 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/d4fd2dc726f19e2d4bc2/maintainability)](https://codeclimate.com/github/euhoo/watch_bg/maintainability)
 [![Build Status](https://travis-ci.org/euhoo/watch_bg.svg?branch=master)](https://travis-ci.org/euhoo/watch_bg)  
 
-Для использования приложения необходимо создать файл ebike.config.js в корневой папке проекта
-В файл index.html необходимо подключить socket.io(предварительно скачанный):
-<script src="./src/libs/socket.io.js"></script>
-После него необходимо подключить файл библиотеки:
-<script src="./libs/ebike.js"></script>
 
-в package.json необходимо прописать скрипт запуска:
+1.Установить пакет npm install ebike --save-dev 
+2.Опционально создать конфигу в корне проекта ./ebike.config.js.
+3.Скачать файл библиотеки socket.io
+4.Добавить в index.html сначала socket.io и ниже ebike:
+<script src="./src/libs/socket.io.js"></script>
+<script src="./node_modules/ebike/ebike.js"></script>
+
+5.в package.json прописать скрипт запуска:
 "scripts": {
-    "start": "node ./libs/ebike.js"
+    "start": "node ./node_modules/ebike/ebike.js"
   },
 
 Для старта приложения набрать npm start.

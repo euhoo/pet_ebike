@@ -1,3 +1,11 @@
+const findConfig = (path1, path2, defaultConfigObj) => {
+  const fs = require("fs");
+  const defaultConfig = fs.existsSync(path1) ? require(path1) : defaultConfigObj; 
+  const config = fs.existsSync(path2) ? require(path2) : defaultConfig;
+  return config;
+}
+
+
 if (typeof process === 'undefined') {
   const socket = io.connect();
 
@@ -47,7 +55,31 @@ if (typeof process === 'undefined') {
   const app = express();
   const server = http.createServer(app);
   const io = require('socket.io').listen(server);
-  const config = require('./ebike.config');
+
+  const userConfigPath = '../../ebike.config.js';
+  const defaultConfigObj = {
+    exeptions: ['git', 'js_babeled', 'node_modules', 'build', 'hotreload', 'idea'], // исключения,которые вотчить не надо, файлы и папки
+    isRemoteServer: false,
+    addressesObj: {
+      1.102: 'http://192.168.1.102:4444',
+    },
+    defaultOptions: {
+      remoteServer: 'http://192.168.2.101:4444',
+      clientPort: '9080',
+    },
+    remoteServerOptions: {
+      path: '/myServer',
+      proxy: {
+        target: 'http://192.168.2.101:4444',
+        changeOrigin: true,
+        ws: true,
+      },
+    },
+    pathToWatch: './',
+  };
+  const defaultConfigPath = './ebike.defaultConfig.js';
+  const config = findConfig(defaultConfigPath, userConfigPath, defaultConfigObj)
+
   const {
     exeptions, defaultOptions, addressesObj, remoteServerOptions, isRemoteServer, pathToWatch,
   } = config;

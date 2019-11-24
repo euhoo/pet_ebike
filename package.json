@@ -1,12 +1,20 @@
 {
-  "name": "watch",
-  "version": "0.0.9",
+  "name": "ebike",
+  "version": "0.0.10",
   "description": "simple file watcher",
-  "main": "index.js",
+  "main": "ebike.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node ebike.js"
   },
+  "bin": {
+    "ebike": "ebike.js"
+  },
+  "files": [
+    "ebike.defaultConfig.js",
+    "ebike.js",
+    "README.md"
+  ],
   "author": "Eugene Kvach",
   "license": "ISC",
   "dependencies": {
@@ -14,12 +22,12 @@
     "file-system": "^2.2.2",
     "http": "0.0.0",
     "node-watch": "^0.6.3",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "http-proxy-middleware": "^0.17.4"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "http-proxy-middleware": "^0.17.4"
+    "eslint-plugin-import": "^2.18.2"
   }
 }
