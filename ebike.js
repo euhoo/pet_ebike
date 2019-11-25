@@ -43,6 +43,16 @@ if (typeof process === 'undefined') {
 		if (!isCss) location.reload();
 	});
 } else {
+	const watchFunc = (watch, exeptions, io, pathToWatch) => watch(pathToWatch, { recursive: true }, (evt, path) => {
+		let include = false;
+		exeptions.forEach((item) => {
+			if (`${path}`.includes(item)) include = true;
+		});
+		if (!include) {
+			console.log(path);
+			io.emit('change', { evt, path, exeptions });
+		}
+	});
 
 	const findConfig = (userConfigPath, defaultConfigPath) => {
 		try {
@@ -50,8 +60,8 @@ if (typeof process === 'undefined') {
 			if (config) return config;
 		}
 		catch {
-		 const config = require(defaultConfigPath);
-		 return config;
+			//  const config = require(defaultConfigPath);
+			return false;
 		}
 	};
 
@@ -68,39 +78,36 @@ if (typeof process === 'undefined') {
 	const config = findConfig(userConfigPath, defaultConfigPath);
 
 	const {
-		exeptions, defaultOptions, aliases, remoteServerOptions, isRemoteServer, pathToWatch,
+		exeptions, clientOptions, aliases, remoteServerOptions, isRemoteServer, pathToWatch,
 	} = config;
-	const { clientPort, remoteServer } = defaultOptions;
+	const { port } = clientOptions;
 
-	const watchFunc = (watch, exeptions, io, pathToWatch) => watch(pathToWatch, { recursive: true }, (evt, path) => {
-		let include = false;
-		exeptions.forEach((item) => {
-			if (`${path}`.includes(item)) include = true;
-		});
-		if (!include) {
-			console.log(path);
-			io.emit('change', { evt, path, exeptions });
-		}
-	});
+	const errors = {
+		localHostPort: 'Default client port not defined. Please add it to ebike.config.js at clientOptions.port property',
+		proxyTarget: 'remoteServerOptions.proxy.target at ebike.config.js is not defined',
+	};
+	let message = '';
 
-	const localhostPort = process.argv[3] || clientPort || 'Default client port not defined. Please add it to ebike.config.js at defaultOptions.clientPort property';
-	const target =  process.argv[2] ? aliases[process.argv[2]] : remoteServer;
-	const message = isRemoteServer ? `Connected to machine: ${target}.` : 'Remote server not defined';
+	if (isRemoteServer) {
+		if(!remoteServerOptions || !remoteServerOptions.proxy || !remoteServerOptions.proxy.target) throw new Error(errors.proxyTarget);
+		const target = process.argv[2] ? aliases[process.argv[2]] : remoteServerOptions.proxy.target;
+		message = `Connected to machine: ${target}.`
+		remoteServerOptions.proxy.target = target;
+		// eslint-disable-next-line no-unused-expressions
+		app.use(remoteServerOptions.path, proxy(remoteServerOptions.proxy));
+		watchFunc(watch, exeptions, io, pathToWatch);
+	};
+
+	if (!isRemoteServer) {
+		message = 'Remote server not defined';
+	};
+
+	const localhostPort = process.argv[3] || port;
+	if(!localhostPort) throw new Error(errors.localHostPort);
 	const link = `http://localhost:${localhostPort}/`;
-	remoteServerOptions.proxy.target = target;
-
-const errors = {
-	clientPort: 'Default client port not defined. Please add it to ebike.config.js at defaultOptions.clientPort property'
-}
-
+	app.use(express.static('.'))
 	server.listen(localhostPort);
 
-	// eslint-disable-next-line no-unused-expressions
-	isRemoteServer ? app.use(remoteServerOptions.path, proxy(remoteServerOptions.proxy)).use(express.static('.'))
-		: app.use(express.static('.'));
-
-	watchFunc(watch, exeptions, io, pathToWatch);
-
-	if (message) console.log(message);
+	console.log(message);
 	console.log(link);
 }

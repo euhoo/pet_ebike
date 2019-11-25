@@ -1,6 +1,6 @@
 {
   "name": "ebike",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "simple file watcher",
   "main": "ebike.js",
   "scripts": {
