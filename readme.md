@@ -3,7 +3,7 @@
 
 
 1.Установить пакет npm install ebike --save-dev   
-2.Опционально создать конфигу в корне проекта ./ebike.config.js.  
+2.Обязательно создать конфигу в корне проекта ./ebike.config.js.  
 3.Скачать файл библиотеки socket.io  
 4.Добавить в index.html сначала socket.io и ниже ebike:  
 <script src="./src/libs/socket.io.js"></script>  

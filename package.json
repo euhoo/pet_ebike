@@ -1,6 +1,6 @@
 {
   "name": "ebike",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "simple file watcher",
   "main": "ebike.js",
   "scripts": {
@@ -8,10 +8,11 @@
     "start": "node src/lib/ebike.js"
   },
   "bin": {
-    "ebike": "src/lib/ebike.js"
+    "ebike": "ebike.js"
   },
   "files": [
-    "ebike.js",
+		"ebike.js",
+		"ebike.config.js",
     "README.md"
   ],
   "author": "Eugene Kvach",
