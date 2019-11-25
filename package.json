@@ -1,17 +1,16 @@
 {
   "name": "ebike",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "simple file watcher",
   "main": "ebike.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ebike.js"
+    "start": "node src/lib/ebike.js"
   },
   "bin": {
-    "ebike": "ebike.js"
+    "ebike": "src/lib/ebike.js"
   },
   "files": [
-    "ebike.defaultConfig.js",
     "ebike.js",
     "README.md"
   ],
