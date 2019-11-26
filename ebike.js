@@ -29,7 +29,8 @@ class FileType {
 	tryReload = () => {
 		const correctItemPath = this.makeCorrectPath(this.path);
 		const changed = this.findChanged(correctItemPath, this.attribute, this.type);
-		return changed ? this.replaceAttr(changed, correctItemPath, this.attribute) : false;
+		if (changed) this.replaceAttr(changed, correctItemPath, this.attribute)
+		return !!changed;
 	};
 }
 
