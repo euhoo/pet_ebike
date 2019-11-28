@@ -11,8 +11,8 @@
     "ebike": "ebike.js"
   },
   "files": [
-		"ebike.js",
-		"ebike.config.js",
+    "ebike.js",
+    "ebike.config.js",
     "README.md"
   ],
   "author": "Eugene Kvach",
