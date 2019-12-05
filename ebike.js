@@ -62,8 +62,8 @@ if (typeof process === 'undefined') {
       if (config) return config;
     }
     catch {
-      //  const config = require(defaultConfigPath);
-      return false;
+       const config = require(defaultConfigPath);
+      return config;
     }
   };
 
@@ -77,8 +77,8 @@ if (typeof process === 'undefined') {
   const userConfigPath = '../../ebike.config.js';
   const defaultConfigPath = './ebike.config.js';
 
-  const config = findConfig(userConfigPath, defaultConfigPath);
-
+	const config = findConfig(userConfigPath, defaultConfigPath);
+	
   const {
     exceptions, clientOptions, aliases, remoteServerOptions, isRemoteServer, pathToWatch,
   } = config;
@@ -101,7 +101,8 @@ if (typeof process === 'undefined') {
   };
 
   if (!isRemoteServer) {
-    message = 'Remote server not defined';
+		message = 'Remote server not defined';
+		watchFunc(watch, exceptions, io, pathToWatch);
   };
 
   const localhostPort = process.argv[3] || port;

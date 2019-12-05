@@ -1,11 +1,11 @@
 {
   "name": "ebike",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "simple file watcher",
   "main": "ebike.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/lib/ebike.js"
+    "start": "node ebike.js"
   },
   "bin": {
     "ebike": "ebike.js"
