@@ -2,6 +2,8 @@
 [![Build Status](https://travis-ci.org/euhoo/watch_bg.svg?branch=master)](https://travis-ci.org/euhoo/watch_bg)  
 
 
+БИБЛИОТЕКА КОРРЕКТНО РАБОТАЕТ НА 12 версии node и выше.
+
 1.Установить пакет npm install ebike --save-dev   
 2.Обязательно создать конфигу в корне проекта ./ebike.config.js.  
 3.Скачать файл библиотеки socket.io  
